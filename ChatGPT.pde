@@ -29,7 +29,7 @@ public class ChatGPT {
   final private double temperature = 1.0; //回答のランダム性 詳しく-> https://platform.openai.com/docs/api-reference/chat/create
   final private String apiKey; //あなたのAPIkey
   final private String apiEndpoint = "https://api.openai.com/v1/chat/completions";
-  private String streamMessage = "";
+  private String streamMessage = "";//ストリーミング取得しているテキスト
 
 
   //コンストラクタ（apiキー）
@@ -224,14 +224,14 @@ public class ChatGPT {
     addMessage("user", prompt);
     new Thread(new Runnable() {
       public void run() {
-        chatWithOpenAI();
+        chatWithGPT();
       }
     }
     ).start();
   }
   
   //ストリーム用の関数
-  private void chatWithOpenAI() {
+  private void chatWithGPT() {
 
     int count = 0;
     try {
@@ -363,7 +363,7 @@ public class ChatGPT {
  var choiceList = completionResult.getChoices();　
  String response；　<-これにchatgptからの返答が入る。
  for ( ChatCompletionChoice choice : choiceList) {
- response = choice.getMessage().getContent(); //なんでfor文書くのかよくわかってない
+ response = choice.getMessage().getContent(); 
  }
  println(response); //返答を出力
  */

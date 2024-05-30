@@ -15,7 +15,7 @@ void setup() {
   gpt = new ChatGPT(gptApiKey);
 
   //stream取得
-  //gpt.sendMessageAsStream("さんまとは");
+  //gpt.sendMessageAsStream("秋刀魚とは");
   
   //会話する
   //gpt.addMessage("system","楽しいAIを演じてください");
@@ -34,7 +34,7 @@ void setup() {
   //String text = gpt.transcriptAudio(dataPath("コーヒーずんだもん.wav"));
   //println("文字起こし結果: "+text);
 
-  //テキストから音声を生成
+  //テキストから音声を生成して保存
   //gpt.asyncSaveAudioData("猫が鍵を落とし、鳥が拾い、友情が芽生えた。", "hoge.mp3");
 
 
