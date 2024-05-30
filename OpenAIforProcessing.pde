@@ -2,7 +2,7 @@
 // Original code by Theo Kanning, available at https://github.com/TheoKanning/openai-java
 
 ChatGPT gpt;
-String gptApiKey = "<Your API Key>";
+String gptApiKey = "";
 
 void setup() {
   size(512, 512);
@@ -10,7 +10,13 @@ void setup() {
 
   //gptの初期化
   gpt = new ChatGPT(gptApiKey);
-
+  
+  //PImage[] images = new PImage[] {loadImage("cat.jpg"), loadImage("dog.jpg")};
+  //println(gpt.visionAnalyzeMultiple("この画像の違いはなに、何人の人がうつってる？", images));
+  
+  //String[] images = new String[] {dataPath("cat.jpg"), dataPath("dog.jpg")};
+  //println(gpt.visionAnalyzeMultiple("この画像の違いはなに、何人の人がうつってる？", images));
+  
   //stream取得
   //gpt.sendMessageAsStream("秋刀魚とは");
   
