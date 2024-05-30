@@ -1,0 +1,9 @@
+# Project Name
+
+This project uses portions of the `openai-java` library by Theo Kanning, which is licensed under the MIT License. 
+
+For more information, please refer to the [openai-java repository](https://github.com/TheoKanning/openai-java).
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.

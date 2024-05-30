@@ -1,9 +1,6 @@
-/*
-openai-java (version 0.16.0)
-URL https://github.com/theokanning/openai-java
-License The MIT License
-https://opensource.org/licenses/mit-license.php
-*/
+// This code includes portions licensed under the MIT License.
+// Original code by Theo Kanning, available at https://github.com/TheoKanning/openai-java
+
 ChatGPT gpt;
 String gptApiKey = "<Your API Key>";
 
