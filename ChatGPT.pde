@@ -543,6 +543,30 @@ public class ChatGPT {
   boolean isStreaming(){
     return isStreaming;
   }
+  
+  public void saveMessages(String fileName) { //fileName を指定
+    String savefile = "data/"+fileName;
+    ArrayList<String> result = new ArrayList<String>();
+    for (int i = 0; i < messages.size(); i++) {
+      var mes = messages.get(i);
+      if (mes.getRole().equals("system"))continue;
+      result.add(mes.getRole()+","+mes.getContent());
+    }
+    String[] result2 = new String[result.size()];
+    for (int i = 0; i < result.size(); i++) {
+      result2[i] = result.get(i);
+    }
+    saveStrings(savefile, result2);
+  }
+  //テキストファイルの読み込みでメッセージを追加する
+  public void loadMessages(String fileName) { //ファイルのパスを指定
+    String[] lines = loadStrings(dataPath(fileName));
+    for (String str : lines) {
+      //if(str.equals("null")) continue;
+      String[] mes = str.split(",", 2);
+      addMessage(mes[0], mes[1]);
+    }
+  }
 }
 
 

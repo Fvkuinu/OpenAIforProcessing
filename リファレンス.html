@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPTクラス日本語リファレンス</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        .method {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ChatGPTクラス日本語リファレンス</h1>
+    <h2>概要</h2>
+    <p>このクラスはOpenAIのAPIを利用して、ChatGPTと対話するためのJavaクラスです。メッセージ送信、音声認識、画像生成などの機能を提供します。</p>
+
+    <h2>コンストラクタ一覧</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>コンストラクタ</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ChatGPT(String apiKey, String version, int maxTokens)</td>
+                <td>APIキー、GPTのバージョン、最大トークン数を指定してChatGPTオブジェクトを作成します。</td>
+            </tr>
+            <tr>
+                <td>ChatGPT(String apiKey, int maxTokens)</td>
+                <td>APIキー、最大トークン数を指定してChatGPTオブジェクトを作成します。GPTのバージョンはデフォルトで"gpt-4o"となります。</td>
+            </tr>
+            <tr>
+                <td>ChatGPT(String apiKey, String version)</td>
+                <td>APIキー、GPTのバージョンを指定してChatGPTオブジェクトを作成します。最大トークン数はデフォルトで100となります。</td>
+            </tr>
+            <tr>
+                <td>ChatGPT(String apiKey)</td>
+                <td>APIキーを指定してChatGPTオブジェクトを作成します。GPTのバージョンはデフォルトで"gpt-4o"、最大トークン数は100となります。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>メソッド一覧</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>メソッド</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>sendMessage(String prompt)</td>
+                <td>メッセージを送信して、ChatGPTからの応答を取得します。</td>
+            </tr>
+            <tr>
+                <td>addMessage(String role, String prompt)</td>
+                <td>特定のロール（system, user, assistant, function）を指定してメッセージを追加します。</td>
+            </tr>
+            <tr>
+                <td>getMessages()</td>
+                <td>メッセージのリスト（履歴）を取得します。</td>
+            </tr>
+            <tr>
+                <td>transcriptAudio(String fileName)</td>
+                <td>音声ファイルをテキストに変換します。</td>
+            </tr>
+            <tr>
+                <td>saveAudioData(String text, String fileName)</td>
+                <td>テキストから音声を生成してMP3ファイルに保存します。</td>
+            </tr>
+            <tr>
+                <td>asyncSaveAudioData(String text, String fileName)</td>
+                <td>非同期でテキストから音声を生成してMP3ファイルに保存します。</td>
+            </tr>
+            <tr>
+                <td>translateAudio(String fileName)</td>
+                <td>音声ファイルを英語に翻訳してテキストに変換します。</td>
+            </tr>
+            <tr>
+                <td>createImage(String prompt)</td>
+                <td>プロンプトから1枚の画像を生成し、PImageとして返します。</td>
+            </tr>
+            <tr>
+                <td>createImage(String prompt, int n)</td>
+                <td>プロンプトから複数の画像を生成し、PImageの配列として返します。</td>
+            </tr>
+            <tr>
+                <td>variateImage(String fileName)</td>
+                <td>入力画像から、それに似た別の画像を生成します。</td>
+            </tr>
+            <tr>
+                <td>visionAnalyzeMultiple(String prompt, PImage[] images)</td>
+                <td>複数のPImageを使用して画像解析を行います。</td>
+            </tr>
+            <tr>
+                <td>visionAnalyze(String prompt, String filename)</td>
+                <td>1枚の画像ファイルを使用して画像解析を行います。</td>
+            </tr>
+            <tr>
+                <td>visionAnalyzeMultiple(String prompt, String[] filenames)</td>
+                <td>複数の画像ファイルを使用して画像解析を行います。</td>
+            </tr>
+            <tr>
+                <td>sendMessageAsStream(String prompt)</td>
+                <td>メッセージを送信し、ストリーミングで応答を取得します。</td>
+            </tr>
+            <tr>
+                <td>getStreamMessage()</td>
+                <td>ストリーミング取得しているテキストを取得します。</td>
+            </tr>
+            <tr>
+                <td>isStreaming()</td>
+                <td>ストリーミング取得しているかを返します。</td>
+            </tr>
+            <tr>
+                <td>saveMessages(String fileName)</td>
+                <td>メッセージの履歴をテキストファイルに保存します</td>
+            </tr>
+            <tr>
+                <td>loadMessages(String filename)</td>
+                <td>テキストファイルからメッセージを追加します。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>コンストラクタの説明</h2>
+
+    <div class="method">
+        <h3>ChatGPT(String apiKey, String version, int maxTokens)</h3>
+        <p>APIキー、GPTのバージョン、最大トークン数を指定してChatGPTオブジェクトを作成します。</p>
+        <pre><code>public ChatGPT(String apiKey, String version, int maxTokens)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>ChatGPT(String apiKey, int maxTokens)</h3>
+        <p>APIキー、最大トークン数を指定してChatGPTオブジェクトを作成します。GPTのバージョンはデフォルトで"gpt-4o"となります。</p>
+        <pre><code>public ChatGPT(String apiKey, int maxTokens)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>ChatGPT(String apiKey, String version)</h3>
+        <p>APIキー、GPTのバージョンを指定してChatGPTオブジェクトを作成します。最大トークン数はデフォルトで100となります。</p>
+        <pre><code>public ChatGPT(String apiKey, String version)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>ChatGPT(String apiKey)</h3>
+        <p>APIキーを指定してChatGPTオブジェクトを作成します。GPTのバージョンはデフォルトで"gpt-4o"、最大トークン数は100となります。</p>
+        <pre><code>public ChatGPT(String apiKey)</code></pre>
+    </div>
+
+    <h2>メソッドの説明</h2>
+
+    <div class="method">
+        <h3>sendMessage(String prompt)</h3>
+        <p>メッセージを送信して、ChatGPTからの応答を取得します。</p>
+        <pre><code>public String sendMessage(String prompt)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>addMessage(String role, String prompt)</h3>
+        <p>特定のロール（system, user, assistant, function）を指定してメッセージを追加します。</p>
+        <pre><code>public void addMessage(String role, String prompt)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>getMessages()</h3>
+        <p>メッセージのリスト（履歴）を取得します。</p>
+        <pre><code>public ArrayList&lt;ChatMessage&gt; getMessages()</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>transcriptAudio(String fileName)</h3>
+        <p>音声ファイルをテキストに変換します。</p>
+        <pre><code>public String transcriptAudio(String fileName)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>saveAudioData(String text, String fileName)</h3>
+        <p>テキストから音声を生成してMP3ファイルに保存します。</p>
+        <pre><code>void saveAudioData(String text, String fileName)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>asyncSaveAudioData(String text, String fileName)</h3>
+        <p>非同期でテキストから音声を生成してMP3ファイルに保存します。</p>
+        <pre><code>void asyncSaveAudioData(String text, String fileName)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>translateAudio(String fileName)</h3>
+        <p>音声ファイルを英語に翻訳してテキストに変換します。</p>
+        <pre><code>public String translateAudio(String fileName)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>createImage(String prompt)</h3>
+        <p>プロンプトから1枚の画像を生成し、PImageとして返します。</p>
+        <pre><code>public PImage createImage(String prompt)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>createImage(String prompt, int n)</h3>
+        <p>プロンプトから複数の画像を生成し、PImageの配列として返します。</p>
+        <pre><code>public PImage[] createImage(String prompt, int n)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>variateImage(String fileName)</h3>
+        <p>入力画像から、それに似た別の画像を生成します。</p>
+        <pre><code>public PImage variateImage(String fileName)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>visionAnalyzeMultiple(String prompt, PImage[] images)</h3>
+        <p>複数のPImageを使用して画像解析を行います。</p>
+        <pre><code>public String visionAnalyzeMultiple(String prompt, PImage[] images)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>visionAnalyze(String prompt, String filename)</h3>
+        <p>1枚の画像ファイルを使用して画像解析を行います。</p>
+        <pre><code>public String visionAnalyze(String prompt, String filename)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>visionAnalyzeMultiple(String prompt, String[] filenames)</h3>
+        <p>複数の画像ファイルを使用して画像解析を行います。</p>
+        <pre><code>public String visionAnalyzeMultiple(String prompt, String[] filenames)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>sendMessageAsStream(String prompt)</h3>
+        <p>メッセージを送信し、ストリーミングで応答を取得します。</p>
+        <pre><code>public void sendMessageAsStream(String prompt)</code></pre>
+    </div>
+
+    <div class="method">
+        <h3>getStreamMessage()</h3>
+        <p>ストリーミング取得しているテキストを取得します。</p>
+        <pre><code>String getStreamMessage()</code></pre>
+    </div>
+    <div class="method">
+        <h3>isStreaming()</h3>
+        <p>ストリーミング取得しているかを返します。</p>
+        <pre><code>boolean isStreaming()</code></pre>
+    </div>
+    <div class="method">
+        <h3>saveMessages(String fileName)</h3>
+        <p>メッセージの履歴をテキストで保存します。ファイル名は.txtを使用してください。テキストファイルはdataフォルダ内に保存されます。</p>
+        <pre><code>void saveMessages(String fileName)</code></pre>
+    </div>
+    <div class="method">
+        <h3>loadMessages(String filename)</h3>
+        <p>テキストファイルを読み込んでメッセージの履歴に追加します。テキストファイルはdataフォルダ内に作ってください。テキストファイルの正しい形式は
+            role,contentで<br>
+            system,いい感じのAIを演じて<br>
+            user,こんにちは<br>
+            assistant,こんにちは、何を手伝いますか<br>
+            みたいなのがいけます。
+        </p>
+        <pre><code>void loadMessages(String filename)</code></pre>
+    </div>
+</body>
+</html>
