@@ -2,7 +2,7 @@
 // Original code by Theo Kanning, available at https://github.com/TheoKanning/openai-java
 
 ChatGPT gpt;
-String gptApiKey = "";
+String gptApiKey = "<YOUR API KEY>";
 
 void setup() {
   size(512, 512);

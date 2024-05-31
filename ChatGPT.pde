@@ -26,12 +26,27 @@ public class ChatGPT {
   private int maxTokens = 100;  //最大のトークン数。文字数の制限みたいなもの。
   private double temperature = 1.0; //回答のランダム性 詳しく-> https://platform.openai.com/docs/api-reference/chat/create
   private String streamMessage = "";//ストリーミング取得しているテキスト
+  private boolean isStreaming = false;
 
+  //コンストラクタ（apiキー）
+  public ChatGPT(String apiKey, String version, int maxTokens) {
+    service = new OpenAiService(apiKey, Duration.ofSeconds(60));
+    this.apiKey = apiKey;
+    this.version = version; //enumのほうがよさげ
+    this.maxTokens = maxTokens;
+  }
+  //コンストラクタ（apiキー、最大のトークン数）
+  public ChatGPT(String apiKey, int maxTokens) {
+    this(apiKey, "gpt-4o", maxTokens);
+  }
+  //コンストラクタ（apiキー、バージョン）
+  public ChatGPT(String apiKey, String version) {
+    this(apiKey, version, 100);
+  }
 
   //コンストラクタ（apiキー）
   public ChatGPT(String apiKey) {
-    this.apiKey = apiKey;
-    service = new OpenAiService(apiKey, Duration.ofSeconds(60));
+    this(apiKey, "gpt-4o", 100);
   }
 
 
@@ -261,20 +276,20 @@ public class ChatGPT {
   }
 
   //visionのメイン関数、1枚、ファイルのパスを指定
-  public String visionAnalyze(String prompt, String imageFilePath) {
-    return visionAnalyzeMultiple(prompt, new String[] {imageFilePath});
+  public String visionAnalyze(String prompt, String filename) {
+    return visionAnalyzeMultiple(prompt, new String[] {filename});
   }
 
   //visionのメイン関数、複数枚、ファイルのパスを指定
-  public String visionAnalyzeMultiple(String prompt, String[] imageFilePaths) {
+  public String visionAnalyzeMultiple(String prompt, String[] filenames) {
     String responseMessage = null;
     
-    String[] base64Images = new String[imageFilePaths.length];
+    String[] base64Images = new String[filenames.length];
     boolean allImagesEncoded = true;
 
     // 画像をBase64エンコード
-    for (int i = 0; i < imageFilePaths.length; i++) {
-      base64Images[i] = encodeImageToBase64(imageFilePaths[i]);
+    for (int i = 0; i < filenames.length; i++) {
+      base64Images[i] = encodeImageToBase64(dataPath(filenames[i]));
       if (base64Images[i] == null) {
         allImagesEncoded = false;
         break;
@@ -419,6 +434,7 @@ public class ChatGPT {
 
   //chatGPTの応答をストリーミング取得する。
   public void sendMessageAsStream(String prompt) {
+    isStreaming = true;
     // メッセージリセット
     streamMessage = "";
     // APIへのリクエストを別スレッドで実行//メッセージリストに追加、メッセージをstring取得,utf-8に変換、全部送信
@@ -517,11 +533,15 @@ public class ChatGPT {
     catch (IOException e) {
       e.printStackTrace();
     }
+    isStreaming = false;
   }
 
   //ストリーミング取得しているテキストを取得
   String getStreamMessage() {
     return streamMessage;
+  }
+  boolean isStreaming(){
+    return isStreaming;
   }
 }
 
