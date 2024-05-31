@@ -10,19 +10,19 @@ void setup() {
 
   //gptの初期化
   gpt = new ChatGPT(apiKey, "gpt-4o", 120);
-  
-  
+
+
   //複数のPImageでgptのvisionを使用（一枚のバージョンはvisionAnalyze()を使用）
   //PImage[] images = new PImage[] {loadImage("cat.jpg"), loadImage("dog.jpg")};
   //println(gpt.visionAnalyzeMultiple("この画像の違いはなに、何人の人がうつってる？", images));
-  
+
   //複数の画像ファイルのパスを渡すことでvisionを使用（一枚のバージョンはvisionAnalyze()を使用）
   //String[] images = new String[] {dataPath("cat.jpg"), dataPath("dog.jpg")};
   //println(gpt.visionAnalyzeMultiple("この画像の違いはなに、何人の人がうつってる？", images));
-  
+
   //stream取得
   //gpt.sendMessageAsStream("秋刀魚とは");
-  
+
   //会話する
   //gpt.addMessage("system","楽しいAIを演じてください");
   //String message = gpt.sendMessage("あなたは何者？"); //あなたのメッセージを送信して、返答を取得
@@ -45,6 +45,13 @@ void setup() {
 
   //メッセージ履歴を.txtで保存、dataフォルダ内に保存されます
   //gpt.saveMessages("hoge.txt");
+
+  //メッセージのリストを取得して、メッセージすべてを標準出力
+  //var messages = gpt.getMessages();
+  //for (int i = 0; i < messages.size(); i++) {
+  //  var mes = messages.get(i);
+  //  println(mes.getRole()+","+mes.getContent());
+  //}
   
   PFont font = createFont("Meiryo", 50);
   textFont(font);

@@ -88,7 +88,7 @@ public class ChatGPT {
   //ChatMessage.getRole()でメッセージのロール
   //ChatMessage.getContent()でメッセージの内容 を取得可能
   public ArrayList<ChatMessage> getMessages() {
-    return messages;
+    return(ArrayList<ChatMessage>) messages.clone();
   }
 
   //音声をテキストに変換する(音声のファイルのパス入れる)
@@ -229,7 +229,7 @@ public class ChatGPT {
   //visionのメイン関数、複数枚、PImageで指定
   public String visionAnalyzeMultiple(String prompt, PImage[] images) {
     String responseMessage = null;
-    
+
     String[] base64Images = new String[images.length];
     boolean allImagesEncoded = true;
 
@@ -253,10 +253,10 @@ public class ChatGPT {
     } else {
       println("Failed to encode the images");
     }
-    
+
     return responseMessage;
   }
-  
+
   //エンコード用
   private String encodeImageToBase64(PImage img, String filename) {
     try {
@@ -283,7 +283,7 @@ public class ChatGPT {
   //visionのメイン関数、複数枚、ファイルのパスを指定
   public String visionAnalyzeMultiple(String prompt, String[] filenames) {
     String responseMessage = null;
-    
+
     String[] base64Images = new String[filenames.length];
     boolean allImagesEncoded = true;
 
@@ -309,7 +309,7 @@ public class ChatGPT {
     } else {
       println("Failed to encode the images");
     }
-    
+
     return responseMessage;
   }
 
@@ -540,10 +540,10 @@ public class ChatGPT {
   String getStreamMessage() {
     return streamMessage;
   }
-  boolean isStreaming(){
+  boolean isStreaming() {
     return isStreaming;
   }
-  
+
   public void saveMessages(String fileName) { //fileName を指定
     String savefile = "data/"+fileName;
     ArrayList<String> result = new ArrayList<String>();
